@@ -39,3 +39,6 @@ def cadastrarproduto(request):
         
         
     return HttpResponse(request,"OK")
+
+def lista_produtos(request):
+    return redirect('home') 
