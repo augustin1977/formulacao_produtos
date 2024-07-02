@@ -27,9 +27,10 @@ def cadastrarproduto(request):
         foto = request.FILES.get('foto')
         insumos_ids = request.POST.getlist('insumo[]')
         quantidades = request.POST.getlist('quantidade[]')
-        produto= Produto(nome=nome,descricao=descricao,preco_unitario= preco)
         if foto:
-            produto.foto=foto
+            produto= Produto(nome=nome,descricao=descricao,preco_unitario= preco,imagem=foto)
+        else:
+            produto= Produto(nome=nome,descricao=descricao,preco_unitario= preco)
         produto.save()
         for insumoid,quantidade in zip(insumos_ids,quantidades):
             if insumoid and insumoid !=" ":
@@ -38,7 +39,7 @@ def cadastrarproduto(request):
                 insumoproduto.save()
         
         
-    return HttpResponse(request,"OK")
+    return redirect('home')
 
 def lista_produtos(request):
     return redirect('home') 

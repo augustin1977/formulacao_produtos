@@ -131,3 +131,7 @@ LOGIN_REDIRECT_URL='home'
 # ]
 SESSION_COOKIE_AGE = 60*60*4
 SESSION_SAVE_EVERY_REQUEST = True
+
+# media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (os.path.join(BASE_DIR, 'media')) #pasta media para abrigar os arquivos dos usuários

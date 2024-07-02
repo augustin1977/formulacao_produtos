@@ -11,7 +11,7 @@ class Produto(models.Model):
     nome = models.CharField(max_length=255)
     descricao= models.TextField()
     preco_unitario = models.DecimalField(max_digits=11,decimal_places=2)
-    imagem=models.FileField(null=True,blank=True,)
+    imagem=models.FileField(null=True,blank=True,upload_to='media')
     data_atualização=models.DateTimeField(auto_now=True)
     ativo=models.BooleanField(default=True)
     
