@@ -14,7 +14,13 @@ class Produto(models.Model):
     imagem=models.FileField(null=True,blank=True,upload_to='media')
     data_atualização=models.DateTimeField(auto_now=True)
     ativo=models.BooleanField(default=True)
-    
+    def calcula_preco(self):
+        insumosprodutos=InsumoProduto.objects.filter(ativo=1).filter(produto=self)
+        custo=0
+        for insumoproduto in insumosprodutos:
+             custo+=insumoproduto.insumo.preco_unitario*insumoproduto.quantidade
+        return custo
+            
     def __str__(self):
         return f"{self.nome}"
               

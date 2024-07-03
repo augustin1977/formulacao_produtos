@@ -40,6 +40,10 @@ def cadastrarproduto(request):
         
         
     return redirect('home')
-
+@login_required
 def lista_produtos(request):
-    return redirect('home') 
+    produtos=(Produto.objects.filter(ativo=1))
+    for produto in produtos:
+        produto.custo=produto.calcula_preco() 
+        produto.lucro=produto.preco_unitario-produto.custo
+    return render(request, 'lista_custo_produtos.html',{'produtos':produtos})
